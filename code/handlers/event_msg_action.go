@@ -23,7 +23,7 @@ func (m *MessageAction) Execute(a *ActionInfo) bool {
 	noContentTimeout := time.AfterFunc(10*time.Second, func() {
 		pp.Println("no content timeout")
 		close(done)
-		err := updateFinalCard(*a.ctx, "请求超时", cardId)
+		err := updateFinalCard(*a.ctx, "我好像到了记忆的尽头，需要一点清理来迎接新的开端。", cardId)
 		if err != nil {
 			return
 		}
@@ -37,7 +37,7 @@ func (m *MessageAction) Execute(a *ActionInfo) bool {
 	go func() {
 		defer func() {
 			if err := recover(); err != nil {
-				err := updateFinalCard(*a.ctx, "聊天失败", cardId)
+				err := updateFinalCard(*a.ctx, "嗨呀Ծ‸Ծ好像哪里不对劲，等我看看怎么回事o(╥﹏╥)o", cardId)
 				if err != nil {
 					return
 				}
@@ -45,7 +45,7 @@ func (m *MessageAction) Execute(a *ActionInfo) bool {
 		}()
 
 		if err := m.chatgpt.StreamChat(*a.ctx, msg, chatResponseStream); err != nil {
-			err := updateFinalCard(*a.ctx, "聊天失败", cardId)
+			err := updateFinalCard(*a.ctx, "我似乎迷失在时间的漩涡中了o(╥﹏╥)o请再来一遍，让我回到现在(*￣︶￣)", cardId)
 			if err != nil {
 				return
 			}
@@ -102,7 +102,7 @@ func (m *MessageAction) Execute(a *ActionInfo) bool {
 }
 
 func sendOnProcess(a *ActionInfo) (*string, error) {
-	// send 正在处理中
+	// send (*╹▽╹*)正在思考中
 	cardId, err := sendOnProcessCard(*a.ctx, a.info.sessionId, a.info.msgId)
 	if err != nil {
 		return nil, err
